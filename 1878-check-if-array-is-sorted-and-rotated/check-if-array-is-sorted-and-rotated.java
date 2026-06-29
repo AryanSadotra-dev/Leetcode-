@@ -1,31 +1,18 @@
-import java.util.Arrays;
-
 class Solution {
     public boolean check(int[] nums) {
         int n = nums.length;
+        int count = 0;
 
-        // Create a copy of the original array
-        int[] arr = nums.clone();
-
-        // Sort the copy
-        Arrays.sort(arr);
-
-        // Try every possible rotation
-        for (int k = 0; k < n; k++) {
-            boolean match = true;
-
-            for (int i = 0; i < n; i++) {
-                if (nums[(i + k) % n] != arr[i]) {
-                    match = false;
-                    break;
-                }
+        for (int i = 0; i < n; i++) {
+            if (nums[i] > nums[(i + 1) % n]) {
+                count++;
             }
 
-            if (match) {
-                return true;
+            if (count > 1) {
+                return false;
             }
         }
 
-        return false;
+        return true;
     }
 }
