@@ -2,24 +2,23 @@ class Solution {
     public boolean isPalindrome(String s) {
 
         s = s.toLowerCase();
-        String str = "";
+        int i = 0, j = s.length() - 1;
 
-        // Keep only letters and digits
-        for (int i = 0; i < s.length(); i++) {
-            char ch = s.charAt(i);
-            if ((ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9')) {
-                str += ch;
-            }
-        }
-        int left = 0;
-        int right = str.length() - 1;
+        while (i < j) {
 
-        while (left < right) {
-            if (str.charAt(left) != str.charAt(right)) {
+            while (i < j && !((s.charAt(i) >= 'a' && s.charAt(i) <= 'z') ||
+                              (s.charAt(i) >= '0' && s.charAt(i) <= '9')))
+                i++;
+
+            while (i < j && !((s.charAt(j) >= 'a' && s.charAt(j) <= 'z') ||
+                              (s.charAt(j) >= '0' && s.charAt(j) <= '9')))
+                j--;
+
+            if (s.charAt(i) != s.charAt(j))
                 return false;
-            }
-            left++;
-            right--;
+
+            i++;
+            j--;
         }
 
         return true;
